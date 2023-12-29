@@ -1,0 +1,75 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic');
+@import '~@fortawesome/fontawesome-free/css/all.css';
+// OverlayScrollbars
+@import '~overlayscrollbars/css/OverlayScrollbars.css';
+// iCheck
+@import '~icheck-bootstrap/icheck-bootstrap.css';
+// AdminLTE
+@import '../../vendor/almasaeed2010/adminlte/dist/css/adminlte.css';
+// Bootstrap
+// Already imported by AdminLTE
+//@import '~bootstrap/scss/bootstrap';
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+
+.upload-btn-wrapper input[type=file] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  bottom: 0;
+  cursor: pointer;
+}
+
+.mini_img {
+  width: 35px;
+  height: 35px;
+  object-fit: cover;
+}
+
+// FRONT //////////////////////////////////@at-root
+
+.article-thumbail {
+  height: 11rem;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.article-photo-thumbail {
+  width: 12rem;
+  object-fit: cover;
+  height: 12rem;
+  border-radius: 5px;
+}
+
+.more-article-thumbail {
+  width: 4rem;
+  object-fit: cover;
+  height: 4rem;
+  border-radius: 5px;
+}
+
+
+
+.icons-menu {
+  border: 1px #333 solid;
+  padding: 1.3rem;
+  border-radius: 50%;
+  width: 5rem;
+  height: 5rem;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.icons-menu:hover {
+  background: #ccc;
+  color: #333;
+}
