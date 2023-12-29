@@ -17,7 +17,7 @@
             @forelse ($services as $service)
             <tr>
                 <td> {{ $service->created_at->format("m/d/Y") }} </td>
-                <td> {{ $service->device ? $service->device->area->descripcion : $service->area->descripcion }} </td>
+                <td> {{ isset($service->device) ? $service->device->area->descripcion : $service->area->descripcion }} </td>
                 <td> @include('livewire.back.includes.estado', ['estado' => $service->estado->descripcion]) </td>
                 <td> {{ $service->userAsigned ? $service->userAsigned->name : 'N/A' }} </td>
                 <td> {{ $service->problema }} </td>
