@@ -20,7 +20,7 @@
                 <td> {{ $service->created_at->format("m/d/Y") }} </td>
                 <td> {{ isset($service->area) ? $service->area->descripcion : 'N/A' }} </td>
                 <td> @include('livewire.back.includes.estado', ['estado' => $service->estado->descripcion]) </td>
-                @if(isset($device->services))
+                @if(isset($service->device))
                     <td> {{ $service->device->userAsigned ? $service->device->userAsigned : 'N/A' }} </td>
                 @else
                 <td> N/A </td>

@@ -19,9 +19,9 @@ class ListDevice extends Component
     {
         $devices = Device::when($this->filtro, function ($query) {
             return $query->where('device_type_id', '=', $this->deviceFilterSelected)
-                ->where('inventario', 'LIKE', '%'.$this->filtro.'%')
-                ->orWhere('descripcion', 'LIKE', '%'.$this->filtro.'%')
-            ;
+                ->where('inventario', 'LIKE', '%' . $this->filtro . '%')
+                ->orWhere('descripcion', 'LIKE', '%' . $this->filtro . '%')
+                ->orWhere('userAsigned', 'LIKE', '%' . $this->filtro . '%');
         })
             ->orderByDesc('created_at')
             ->paginate(20);

@@ -15,6 +15,7 @@
             <tr>
                 <th>Inventario</th>
                 <th>Descripcion</th>
+                <th>Propietario</th>
                 <th>Tipo de dispositivo</th>
                 <th>Area</th>
                 <th>Acciones</th>
@@ -25,6 +26,11 @@
             <tr>
                 <td> {{ $device->inventario }} </td>
                 <td> {{ $device->descripcion }} </td>
+                @if(isset($device->userAsigned))
+                    <td> {{ $device->userAsigned ? $device->userAsigned : 'N/A' }} </td>
+                @else
+                    <td> N/A </td>
+                @endif
                 <td> {{ $device->deviceType->descripcion }} </td>
                 <td> {{ $device->area->descripcion }} </td>
                 <td>

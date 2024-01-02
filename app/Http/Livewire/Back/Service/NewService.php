@@ -2,12 +2,13 @@
 
 namespace App\Http\Livewire\Back\Service;
 
+use App\Models\User;
 use App\Models\Device;
 use App\Models\Estado;
 use App\Models\Service;
-use App\Models\User;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\DB;
 
 class NewService extends Component
 {
@@ -73,7 +74,14 @@ class NewService extends Component
     {
         $estados = Estado::orderBy('descripcion')->pluck('descripcion', 'id');
         // $devices = Device::orderBy('descripcion')->pluck('inventario_descripcion','id');
-        $devices = Device::orderBy('inventario')->get()->pluck('inventario_descripcion', 'id');
+
+        // $devices = Device::orderBy('inventario')->get()->pluck('inventario_descripcion', 'id');
+        $devices = Device::select(
+            DB::raw("CONCAT(descripcion,' - ',userAsigned) AS descripcion"),
+            'id'
+        )
+            ->orderBy('descripcion', 'asc')
+            ->pluck('descripcion', 'id');
 
         $users = User::orderBy('name')->pluck('name', 'id');
 

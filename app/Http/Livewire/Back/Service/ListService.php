@@ -40,7 +40,8 @@ class ListService extends Component
 
         $services = Service::when($this->filtro, function ($query) {
             return $query->where('devices.inventario', 'LIKE', '%' . $this->filtro . '%')
-                ->orWhere('services.problema', 'LIKE', '%' . $this->filtro . '%');
+                ->orWhere('services.problema', 'LIKE', '%' . $this->filtro . '%')
+                ->orWhere('devices.userAsigned', 'LIKE', '%' . $this->filtro . '%');
         })
             ->leftJoin('devices', 'services.device_id', '=', 'devices.id')
             ->select('services.*')
