@@ -33,13 +33,14 @@ class NewService extends Component
     {
 
         $this->validate();
-
+        $device = Device::where('id', $this->deviceSelected)->first();
         $service = Service::create([
             'estado_id' => $this->estadoSelected,
             'problema' => $this->service->problema,
             'solucion' => $this->service->solucion,
             'device_id' => $this->deviceSelected,
             'user_id' => $this->userSelected,
+            'area_id' => $device->area_id,
             'file' => 'file',
             'entega_baja' => $this->service->entega_baja,
             'usuario_asignado' => $this->service->usuario_asignado,

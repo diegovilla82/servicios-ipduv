@@ -238,8 +238,8 @@ return [
             'icon' => 'fas fa-fw fa-home',
         ],
         [
-            'text' => 'Agregar servicio simple',
-            'url'  => '/admin/service_simple/create',
+            'text' => 'Agregar servicio',
+            'url'  => '/admin/service/create',
             'icon' => 'far fa-fw fa-file',
         ],
         [

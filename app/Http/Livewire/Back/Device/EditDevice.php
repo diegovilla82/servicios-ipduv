@@ -30,6 +30,7 @@ class EditDevice extends Component
         'device.cantidad' => '',
         'deviceTypeSelected' => '',
         'areaSelected' => '',
+        'device.userAsigned' => '',
 
         'device.cpu' => '',
         'device.ram' => '',
@@ -47,6 +48,9 @@ class EditDevice extends Component
 
     public function save_device()
     {
+        if (!$this->device->userAsigned) {
+            $this->device->userAsigned = 'N/A';
+        }
         $this->validate();
         $deviceOriginal = Device::firstWhere('inventario', $this->device->inventario);
         // VERIFICO QUE EL INVENTARIO QUE SE INGRESE NO EXITA Y QUE EL MISMO

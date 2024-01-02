@@ -20,6 +20,7 @@ class NewDevice extends Component
         'device.cantidad' => '',
         'deviceTypeSelected' => '',
         'areaSelected' => '',
+        'device.userAsigned' => '',
 
         'device.cpu' => '',
         'device.ram' => '',
@@ -55,6 +56,9 @@ class NewDevice extends Component
 
     public function save_device()
     {
+        if (!$this->device->userAsigned) {
+            $this->device->userAsigned = 'N/A';
+        }
         $this->validate();
         $this->device->device_type_id = $this->deviceTypeSelected;
         $this->device->area_id = $this->areaSelected;

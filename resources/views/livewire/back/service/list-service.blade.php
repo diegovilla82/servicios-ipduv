@@ -6,9 +6,10 @@
                 <th>Fecha</th>
                 <th>Area</th>
                 <th>Estado</th>
-                <th>Tecnico</th>
+                <th>Propietario</th>
                 <th>Problema</th>
                 <th>Solucion</th>
+                <th>Tecnico</th>
                 <th>Inventario</th>
                 <th>Acciones</th>
             </tr>
@@ -19,9 +20,14 @@
                 <td> {{ $service->created_at->format("m/d/Y") }} </td>
                 <td> {{ isset($service->area) ? $service->area->descripcion : 'N/A' }} </td>
                 <td> @include('livewire.back.includes.estado', ['estado' => $service->estado->descripcion]) </td>
-                <td> {{ $service->userAsigned ? $service->userAsigned->name : 'N/A' }} </td>
+                @if(isset($device->services))
+                    <td> {{ $service->device->userAsigned ? $service->device->userAsigned : 'N/A' }} </td>
+                @else
+                <td> N/A </td>
+                @endif
                 <td> {{ $service->problema }} </td>
                 <td> {{ $service->solucion }} </td>
+                <td> {{ $service->userAsigned ? $service->userAsigned->name : 'N/A' }} </td>
                 <td> {{ ($service->device) ? ($service->device->inventario) : 'N/A' }} </td>
                 <td>
                     <a href="#" type="button" class="btn-sm btn-primary" wire:click="reporte({{$service->id}})"> <i class='fas fa-print'></i> </a>

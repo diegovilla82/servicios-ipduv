@@ -20,6 +20,8 @@
         classes="col-md-6"
         tabindex=5
     />
+
+    <x-admin.input title="Usuario asignado" model="device.userAsigned" required=true tabindex=6 classes="col-md-6"/>
 </div>
 
 @if($deviceTypeSelected == 1 || $deviceTypeSelected == 2)
@@ -27,14 +29,14 @@
             <h3> Componentes</h3>
         </div>
         <div class="row">
-            <x-admin.input title="CPU" model="device.cpu" tabindex=6 classes="col-md-12"/>
+            <x-admin.input title="CPU" model="device.cpu" tabindex=7 classes="col-md-12"/>
 
-            <x-admin.input title="Placa madre" model="device.motherboard" tabindex=7 classes="col-md-12"/>
+            <x-admin.input title="Placa madre" model="device.motherboard" tabindex=8 classes="col-md-12"/>
 
-            <x-admin.input title="RAM" model="device.ram" tabindex=8 classes="col-md-12"/>
+            <x-admin.input title="RAM" model="device.ram" tabindex=9 classes="col-md-12"/>
 
-            <x-admin.input title="Disco" model="device.drive" tabindex=9 classes="col-md-12"/>
+            <x-admin.input title="Disco" model="device.drive" tabindex=10 classes="col-md-12"/>
 
-            <x-admin.input title="Fuente" model="device.power_supply" tabindex=10 classes="col-md-12"/>
+            <x-admin.input title="Fuente" model="device.power_supply" tabindex=11 classes="col-md-12"/>
         </div>
     @endif

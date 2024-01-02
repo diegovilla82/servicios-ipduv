@@ -2,12 +2,13 @@
 
 namespace App\Http\Livewire\Back\Service;
 
-use App\Http\Traits\toast;
+use App\Models\User;
 use App\Models\Device;
 use App\Models\Estado;
 use App\Models\Service;
-use App\Models\User;
 use Livewire\Component;
+use App\Http\Traits\toast;
+use Illuminate\Support\Facades\DB;
 
 class EditService extends Component
 {
@@ -59,7 +60,13 @@ class EditService extends Component
     public function render()
     {
         $estados = Estado::orderBy('descripcion')->pluck('descripcion', 'id');
-        $devices = Device::orderBy('descripcion')->pluck('descripcion', 'id');
+        $devices = Device::select(
+            DB::raw("CONCAT(descripcion,' - ',userAsigned) AS descripcion"),
+            'id'
+        )
+            ->orderBy('descripcion', 'asc')
+            ->pluck('descripcion', 'id');
+        // $devices = Device::orderBy('descripcion')->pluck('descripcion', 'id');
         $users = User::orderBy('name')->pluck('name', 'id');
 
         return view('livewire.back.service.edit-service', [
