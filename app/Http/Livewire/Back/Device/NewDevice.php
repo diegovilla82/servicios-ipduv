@@ -15,12 +15,14 @@ class NewDevice extends Component
 
     protected $rules = [
         'device.descripcion' => '',
-        'device.inventario' => 'required|integer|digits_between:4,6|unique:devices,inventario',
+        // 'device.inventario' => 'required|integer|digits_between:4,6|unique:devices,inventario',
+        'device.inventario' => 'required|integer|digits_between:4,6',
         'device.fecha_compra' => '',
         'device.cantidad' => '',
         'deviceTypeSelected' => '',
         'areaSelected' => '',
         'device.userAsigned' => '',
+        'device.prefijoInventario' => '',
 
         'device.cpu' => '',
         'device.ram' => '',
@@ -60,10 +62,17 @@ class NewDevice extends Component
             $this->device->userAsigned = 'N/A';
         }
         $this->validate();
-        $this->device->device_type_id = $this->deviceTypeSelected;
-        $this->device->area_id = $this->areaSelected;
-        $this->device->save();
-
-        $this->toast('El dispositivo se cargo con exitoso');
+        $device = Device::where('inventario', $this->device->inventario)
+            ->where('prefijoInventario', $this->device->prefijoInventario)
+            ->first();
+        // dd($device);
+        if ($device == null) {
+            $this->device->device_type_id = $this->deviceTypeSelected;
+            $this->device->area_id = $this->areaSelected;
+            $this->device->save();
+            $this->toast('El dispositivo se cargo con exitoso');
+        } else {
+            $this->toast('Ya existe un dispositivo con ese inventario y esa letra', 'error');
+        }
     }
 }

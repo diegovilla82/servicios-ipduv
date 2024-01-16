@@ -31,6 +31,7 @@ class EditDevice extends Component
         'deviceTypeSelected' => '',
         'areaSelected' => '',
         'device.userAsigned' => '',
+        'device.prefijoInventario' => '',
 
         'device.cpu' => '',
         'device.ram' => '',
@@ -52,11 +53,15 @@ class EditDevice extends Component
             $this->device->userAsigned = 'N/A';
         }
         $this->validate();
-        $deviceOriginal = Device::firstWhere('inventario', $this->device->inventario);
+        $deviceOriginal = Device::where('inventario', $this->device->inventario)
+            ->where('prefijoInventario', $this->device->prefijoInventario)
+            ->first();
+
+
         // VERIFICO QUE EL INVENTARIO QUE SE INGRESE NO EXITA Y QUE EL MISMO
         // NO SEA EL DEL REGISTRO ACTUAL
-        if ($deviceOriginal->id != $this->device->id) {
-            $this->toast('El numero de inventario seleccionado ya existe', 'error');
+        if ($deviceOriginal != null && ($deviceOriginal->id != $this->device->id)) {
+            $this->toast('El numero de inventario seleccionado ya existe, cambie la letra o el inventario', 'error');
         } else {
             $this->device->device_type_id = $this->deviceTypeSelected;
             $this->device->area_id = $this->areaSelected;
