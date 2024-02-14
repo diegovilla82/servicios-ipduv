@@ -26,7 +26,10 @@
                         <td> N/A </td>
                     @endif
                     <td> {{ $device->deviceType->descripcion }} </td>
-                    <td> {{ $device->area->descripcion }} </td>
+                    <td> {!! $device->area->descripcion == 'Deposito'
+                        ? $device->area->descripcion . ' - Estado: ' . $device->getState()
+                        : $device->area->descripcion !!}
+                    </td>
                     <td>
                         <a href="{{ route('admin.device.services', $device->id) }}" type="button"
                             class="btn-sm btn-primary"> <i class='fas fa-edit'></i> </a>

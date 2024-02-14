@@ -22,13 +22,20 @@ class Device extends Model
         'motherboard',
         'ram',
         'drive',
-        'power_supply'
+        'power_supply',
+        'is_stored',
+        'state'
     ];
     use HasFactory;
 
     public function getInventarioDescripcionAttribute()
     {
         return $this->inventario . ' - ' . $this->descripcion;
+    }
+
+    public function getState()
+    {
+        return $this->state == 0 ? '<b style="color: green">Bueno</b>' : '<b style="color: red" >Malo</b>';
     }
 
 

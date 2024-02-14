@@ -12,7 +12,16 @@
 <div class="row">
     <x-admin.select model="areaSelected" title="Area:" :values="$areas" classes="col-md-6" tabindex=6 />
 
-    <x-admin.input title="Usuario asignado" model="device.userAsigned" required=true tabindex=7 classes="col-md-6" />
+    <x-admin.input title="Usuario asignado" model="device.userAsigned" required=true classes="col-md-6" tabindex=7 />
+</div>
+
+<div class="row">
+    {{-- <x-admin.select model="isStored" title="En deposito?:" :values="$stored" classes="col-md-6" tabindex=8 /> --}}
+    @if ($areas[$areaSelected] == 'Deposito')
+        <x-admin.select model="stateSelected" title="Estado en deposito:" :values="$states" classes="col-md-6"
+            tabindex=9 />
+    @endif
+
 </div>
 
 @if ($deviceTypeSelected == 1 || $deviceTypeSelected == 2)

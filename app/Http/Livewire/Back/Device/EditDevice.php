@@ -2,18 +2,19 @@
 
 namespace App\Http\Livewire\Back\Device;
 
-use App\Http\Traits\toast;
 use App\Models\Area;
 use App\Models\Device;
-use App\Models\Device_type;
 use App\Models\Service;
-use Endroid\QrCode\Color\Color;
-use Endroid\QrCode\Encoding\Encoding;
-use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelLow;
-use Endroid\QrCode\QrCode;
-use Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeMargin;
-use Endroid\QrCode\Writer\PngWriter;
 use Livewire\Component;
+use App\Http\Traits\toast;
+use Endroid\QrCode\QrCode;
+use App\Models\Device_type;
+use Endroid\QrCode\Color\Color;
+use Illuminate\Support\Collection;
+use Endroid\QrCode\Writer\PngWriter;
+use Endroid\QrCode\Encoding\Encoding;
+use Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeMargin;
+use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelLow;
 
 class EditDevice extends Component
 {
@@ -22,6 +23,8 @@ class EditDevice extends Component
     public $user;
     public $deviceTypeSelected = 0;
     public $areaSelected = 0;
+    // public $isStored = 0;
+    public $stateSelected = 0;
 
     protected $rules = [
         'device.descripcion' => '',
@@ -38,6 +41,8 @@ class EditDevice extends Component
         'device.motherboard' => '',
         'device.power_supply' => '',
         'device.drive' => '',
+        // 'device.is_stored' => '',
+        'device.state' => '',
     ];
 
     public function mount(Device $device)
@@ -45,6 +50,8 @@ class EditDevice extends Component
         $this->device = $device;
         $this->deviceTypeSelected = $this->device->device_type_id;
         $this->areaSelected = $this->device->area_id;
+        $this->stateSelected = $this->device->state;
+        // $this->isStored = $this->device->is_stored;
     }
 
     public function save_device()
@@ -65,6 +72,10 @@ class EditDevice extends Component
         } else {
             $this->device->device_type_id = $this->deviceTypeSelected;
             $this->device->area_id = $this->areaSelected;
+
+            $this->device->state = $this->stateSelected;
+            // $this->device->is_stored = $this->isStored;
+
             $this->device->save();
 
             $this->toast('Dispositivo Actualizado');
@@ -87,7 +98,6 @@ class EditDevice extends Component
     {
         $devicesTypes = Device_type::orderBy('descripcion')->pluck('descripcion', 'id');
         $areas = Area::orderBy('descripcion')->pluck('descripcion', 'id');
-
         $ruta = route('admin.device.services', $this->device->id);
 
         $writer = new PngWriter();
@@ -108,6 +118,8 @@ class EditDevice extends Component
         return view('livewire.back.device.edit-device', [
             'devicesTypes' => $devicesTypes,
             'areas' => $areas,
+            // 'stored' => new Collection([0 => 'No', 1 => 'Si']),
+            'states' => new Collection([0 => 'Bueno', 1 => 'Malo']),
             'qr' => $qr,
         ]);
     }

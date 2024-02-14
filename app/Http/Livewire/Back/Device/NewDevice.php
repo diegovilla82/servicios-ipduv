@@ -7,11 +7,14 @@ use App\Models\Device;
 use Livewire\Component;
 use App\Http\Traits\toast;
 use App\Models\Device_type;
+use Illuminate\Support\Collection;
 
 class NewDevice extends Component
 {
     public $device, $user;
     public $deviceTypeSelected = 0, $areaSelected = 0;
+    // public $isStored = 0;
+    public $stateSelected = 0;
 
     protected $rules = [
         'device.descripcion' => '',
@@ -29,6 +32,8 @@ class NewDevice extends Component
         'device.motherboard' => '',
         'device.power_supply' => '',
         'device.drive' => '',
+        // 'device.is_stored' => '',
+        'device.state' => '',
     ];
 
     use toast;
@@ -39,11 +44,14 @@ class NewDevice extends Component
         $area = Area::orderBy('descripcion')->first();
         $this->areaSelected = $area->id;
 
+
         $deviceType = Device_type::orderBy('descripcion')->first();
         $this->deviceTypeSelected = $deviceType->id;
 
         $this->user = Auth()->user();
         $this->device = new Device();
+        $this->device->state = $this->stateSelected;
+        // $this->device->is_stored = $this->isStored;
     }
 
     public function render()
@@ -52,7 +60,9 @@ class NewDevice extends Component
 
         return view('livewire.back.device.new-device', [
             'devicesTypes' => $devicesTypes,
-            'areas' => Area::orderBy('descripcion')->pluck('descripcion', 'id')
+            'areas' => Area::orderBy('descripcion')->pluck('descripcion', 'id'),
+            // 'stored' => new Collection([0 => 'No', 1 => 'No']),
+            'states' => new Collection([0 => 'Bueno', 1 => 'Malo']),
         ]);
     }
 
@@ -69,6 +79,11 @@ class NewDevice extends Component
         if ($device == null) {
             $this->device->device_type_id = $this->deviceTypeSelected;
             $this->device->area_id = $this->areaSelected;
+
+            $this->device->state = $this->stateSelected;
+            // $this->device->is_stored = $this->isStored;
+
+
             $this->device->save();
             $this->toast('El dispositivo se cargo con exitoso');
         } else {
