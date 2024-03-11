@@ -3,12 +3,11 @@
     <table class="table table-striped table-bordered table-sm">
         <thead>
             <tr>
+                <th></th>
                 <th>Fecha</th>
                 <th>Area</th>
-                <th>Estado</th>
                 <th>Propietario</th>
                 <th>Problema</th>
-                <th>Solucion</th>
                 <th>Tecnico</th>
                 <th>Inventario</th>
                 <th>Acciones</th>
@@ -17,16 +16,15 @@
         <tbody>
             @forelse ($services as $service)
             <tr>
-                <td> {{ $service->created_at->format("m/d/Y") }} </td>
+                <td> {!! $service->getEstado() !!}</td>
+                <td> {{ $service->created_at->format("d/m/Y") }} </td>
                 <td> {{ isset($service->area) ? $service->area->descripcion : 'N/A' }} </td>
-                <td> @include('livewire.back.includes.estado', ['estado' => $service->estado->descripcion]) </td>
                 @if(isset($service->device))
                     <td> {{ $service->device->userAsigned ? $service->device->userAsigned : 'N/A' }} </td>
                 @else
                 <td> N/A </td>
                 @endif
                 <td> {{ $service->problema }} </td>
-                <td> {{ $service->solucion }} </td>
                 <td> {{ $service->userAsigned ? $service->userAsigned->name : 'N/A' }} </td>
                 <td> {{ ($service->device) ? ($service->device->inventario) : 'N/A' }} </td>
                 <td>

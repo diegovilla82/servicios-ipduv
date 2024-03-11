@@ -113,6 +113,13 @@ class UserTableSeeder extends Seeder
             'active' => true,
         ]);
 
-//        $user->assignRole('Admin');
+        User::create([
+            'name' => 'Diego Alvarez',
+            'email' => 'dalvarez@ipduv.gov.ar',
+            'password' => Hash::make('dalvarez22'),
+            'active' => true,
+        ]);
+
+        //        $user->assignRole('Admin');
     }
 }

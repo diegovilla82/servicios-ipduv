@@ -20,14 +20,14 @@
                 <td> @include('livewire.back.includes.estado', ['estado' => $service->estado->descripcion]) </td>
                 <td> {{ $service->problema }} </td>
                 <td>
-                    <a href="#" type="button" class="btn-sm btn-primary" wire:click="reporte({{$service->id}})"> <i class='fas fa-print'></i>  </a> 
-                    <a href="{{ route('admin.service.edit', $service->id) }}" type="button" class="btn-sm btn-primary"> <i class='fas fa-edit'></i>  </a> 
-                    <a href="{{ route('admin.device.services', $service->id) }}" type="button" class="btn-sm btn-primary"> <i class='fas fa-search'></i>  </a> 
+                    <a href="#" type="button" class="btn-sm btn-primary" wire:click="reporte({{$service->id}})"> <i class='fas fa-print'></i>  </a>
+                    <a href="{{ route('admin.service.edit', $service->id) }}" type="button" class="btn-sm btn-primary"> <i class='fas fa-edit'></i>  </a>
+                    <a href="{{ route('admin.device.services', $service->id) }}" type="button" class="btn-sm btn-primary"> <i class='fas fa-search'></i>  </a>
                 </td>
             </tr>
             @endforeach
         </tbody>
-    </table> 
+    </table>
     @else
     <tr>
         <td colspan="4">

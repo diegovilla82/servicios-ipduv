@@ -21,6 +21,30 @@ class Service extends Model
         'area_id'
     ];
 
+    // 1 en proceso
+    // 2 resuelto
+    // 3 sin resolver
+    public function getEstado()
+    {
+        $estado = $this->estado_id;
+        $html = '';
+        switch ($estado) {
+            case 1:
+                $icon = 'clock';
+                $color = '';
+                break;
+            case 2:
+                $icon = 'check-circle';
+                $color = 'green';
+                break;
+            case 3:
+                $icon = 'ban';
+                $color = 'red';
+                break;
+        }
+        return '<i class="fas fa-fw fa-' . $icon . ' "style="color:' . $color . '"  aria-hidden="true"></i>';
+    }
+
     public function estado()
     {
         return $this->belongsTo(Estado::class, 'estado_id', 'id');
