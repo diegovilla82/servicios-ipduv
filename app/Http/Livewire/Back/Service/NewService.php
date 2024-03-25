@@ -9,9 +9,11 @@ use App\Models\Service;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\DB;
+use App\Http\Traits\toast;
 
 class NewService extends Component
 {
+    use toast;
     use WithFileUploads;
     public $service;
     public $file;
@@ -19,11 +21,12 @@ class NewService extends Component
     public $deviceSelected;
     public $userSelected;
     public $deviceIdModal;
+
     protected $rules = [
         'estadoSelected' => 'required|min:1',
         'service.problema' => 'required',
         'service.solucion' => '',
-        'deviceSelected' => 'required|min:1',
+        'deviceSelected' => '',
         'service.user_id' => '',
         'file' => '',
         'service.entrega_baja' => '',
@@ -32,16 +35,17 @@ class NewService extends Component
 
     public function save_service()
     {
-
+        $this->service->problema = 'ehh';
+        $this->estadoSelected ? '' : $this->toast('El campo estado es obligatorio, completeo', 'error') ;
         $this->validate();
-        $device = Device::where('id', $this->deviceSelected)->first();
+
+    
         $service = Service::create([
             'estado_id' => $this->estadoSelected,
             'problema' => $this->service->problema,
             'solucion' => $this->service->solucion,
             'device_id' => $this->deviceSelected,
             'user_id' => $this->userSelected,
-            'area_id' => $device->area_id,
             'file' => 'file',
             'entega_baja' => $this->service->entega_baja,
             'usuario_asignado' => $this->service->usuario_asignado,

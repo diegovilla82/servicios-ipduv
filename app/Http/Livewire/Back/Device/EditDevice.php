@@ -57,7 +57,7 @@ class EditDevice extends Component
     public function save_device()
     {
         if (!$this->device->userAsigned) {
-            $this->device->userAsigned = 'N/A';
+            $this->device->userAsigned = 'Sin asignar';
         }
         $this->validate();
         $deviceOriginal = Device::where('inventario', $this->device->inventario)

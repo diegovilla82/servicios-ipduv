@@ -21,9 +21,9 @@
                     <td> {{ $device->inventario . '-' . $device->prefijoInventario }} </td>
                     <td> {{ $device->descripcion }} </td>
                     @if (isset($device->userAsigned))
-                        <td> {{ $device->userAsigned ? $device->userAsigned : 'N/A' }} </td>
+                        <td> {{ $device->userAsigned ? $device->userAsigned : 'Sin asignar' }} </td>
                     @else
-                        <td> N/A </td>
+                        <td> Sin asignar </td>
                     @endif
                     <td> {{ $device->deviceType->descripcion }} </td>
                     <td> {!! $device->area->descripcion == 'Deposito'

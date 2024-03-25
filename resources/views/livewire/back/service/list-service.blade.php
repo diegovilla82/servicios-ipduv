@@ -18,15 +18,16 @@
             <tr>
                 <td> {!! $service->getEstado() !!}</td>
                 <td> {{ $service->created_at->format("d/m/Y") }} </td>
-                <td> {{ isset($service->area) ? $service->area->descripcion : 'N/A' }} </td>
+                <td> {{ isset($service->device) ? $service->device->area->descripcion : 'Sin asignar' }} </td>
+                <!-- <td> {{ isset($service->area) ? $service->area->descripcion : 'Sin asignar' }} </td> -->
                 @if(isset($service->device))
-                    <td> {{ $service->device->userAsigned ? $service->device->userAsigned : 'N/A' }} </td>
+                    <td> {{ $service->device->userAsigned ? $service->device->userAsigned : 'Sin asignar' }} </td>
                 @else
-                <td> N/A </td>
+                <td> Sin asignar </td>
                 @endif
                 <td> {{ $service->problema }} </td>
-                <td> {{ $service->userAsigned ? $service->userAsigned->name : 'N/A' }} </td>
-                <td> {{ ($service->device) ? ($service->device->inventario) : 'N/A' }} </td>
+                <td> {{ $service->userAsigned ? $service->userAsigned->name : 'Sin asignar' }} </td>
+                <td> {{ ($service->device) ? ($service->device->inventario) : 'Sin asignar' }} </td>
                 <td>
                     <a href="#" type="button" class="btn-sm btn-primary" wire:click="reporte({{$service->id}})"> <i class='fas fa-print'></i> </a>
                     <a href="{{ route('admin.service.edit', $service->id) }}" type="button" class="btn-sm btn-primary"> <i class='fas fa-edit'></i>  </a>

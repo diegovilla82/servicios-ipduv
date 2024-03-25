@@ -1,14 +1,15 @@
-<div class="row">
+<div wire:ignore class="row">
     <x-admin.select
         id="deviceSelect2"
         model="deviceSelected"
         required="true"
-        noOpcion="Escoga una opcion"
+        noOpcion="Sin asignar"
         title="Dispositivo:"
         :values="$devices"
         classes="col-md-6"
         tabindex="1"
     />
+    @error('deviceSelected') <span class="text-danger">{{ $message }}</span> @enderror
 </div>
 <div class="row">
     <x-admin.textarea title="Problema" model="service.problema" required=true tabindex=2 classes="col-md-12"/>
@@ -18,18 +19,19 @@
     <x-admin.select
         id="estadoSelect2"
         model="estadoSelected"
-        noOpcion="probando"
+        noOpcion="Sin asignar"
         title="Estado:"
         :values="$estados"
         classes="col-md-6"
         tabindex=3
     />
+    @error('estadoSelected') <span class="text-danger">{{ $message }}</span> @enderror
     </div>
     <div wire:ignore class="row">
     <x-admin.select
         id="userSelect2"
         model="userSelected"
-        noOpcion="probando"
+        noOpcion="Sin asignar"
         title="Tecnico:"
         :values="$users"
         classes="col-md-6 js-example-basic-single"

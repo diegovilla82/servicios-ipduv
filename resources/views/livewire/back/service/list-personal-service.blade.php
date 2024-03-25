@@ -19,10 +19,10 @@
                     <td> {{ $service->created_at->format("d/m/Y") }} </td>
                     <td> {{ $service->device ? $service->device->area->descripcion : $service->area->descripcion }} </td>
                     <td> @include('livewire.back.includes.estado', ['estado' => $service->estado->descripcion]) </td>
-                    <td> {{ $service->userAsigned ? $service->userAsigned->name : 'N/A' }} </td>
+                    <td> {{ $service->userAsigned ? $service->userAsigned->name : 'Sin asignar' }} </td>
                     <td> {{ $service->problema }} </td>
                     <td> {{ $service->solucion }} </td>
-                    <td> {{ ($service->device) ? ($service->device->inventario) : 'N/A' }} </td>
+                    <td> {{ ($service->device) ? ($service->device->inventario) : 'Sin asignar' }} </td>
                     <td>
                         <a href="#" type="button" class="btn-sma btn-primary" wire:click="reporte({{$service->id}})"> <i class='fas fa-print'></i> </a>
                         <a href="{{ route('admin.service.edit', $service->id) }}" type="button" class="btn-sm btn-primary"> <i class='fas fa-edit'></i>  </a>

@@ -61,11 +61,11 @@
             <td colspan="2" style="text-align: center"><br> {{ $servicio->solucion }} <br><br></td>
         </tr>
         <tr>
-            <td style="text-align: center">AREA: {{ $servicio->device->area->descripcion }}</td>
+            <td style="text-align: center">AREA: {{ isset($service->device) ? $service->device->area->descripcion : 'Sin asignar' }}</td>
             <td style="text-align: center"></td>
         </tr>
         <tr>
-            <td style="text-align: center"> EQUIPO INVENTARIO NUM. {{ $servicio->device->inventario }}</td>
+            <td style="text-align: center"> EQUIPO INVENTARIO NUM. {{ isset($service->device) ? $service->device->inventario : 'Sin asignar' }}</td>
             <td style="text-align: center">TÉCNICO</td>
         </tr>
         <tr>
@@ -74,13 +74,13 @@
                 @if ($servicio->entrega_baja)
                     {{ $servicio->nombre_usuario }}
                 @else
-                    FIRMA DEL RESPONSABLE EQUIPO
+                    FIRMA DE {{ isset($service->nombre_usuario) ? $service->nombre_usuario : '' }}
                 @endif
             </td>
             <td style="text-align: center">
                 <br>
                 ----------------------------------- <br>
-                {{ $servicio->userAsigned->name }}
+                {{ isset($service->userAsigned) ? $service->userAsigned->name : 'Sin asignar' }}
             </td>
         </tr>
 

@@ -26,7 +26,7 @@
             tabindex={{ $tabindex }}
         >
             @if ($noOpcion)
-            <option value="">Escoja una opcion</option>
+            <option value="">{{$noOpcion}}</option>
             @endif
             @foreach ($values as $key => $value)
                 <option value="{{ $key }}">{{ $value }}</option>
