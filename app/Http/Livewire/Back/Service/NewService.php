@@ -35,7 +35,6 @@ class NewService extends Component
 
     public function save_service()
     {
-        $this->service->problema = 'ehh';
         $this->estadoSelected ? '' : $this->toast('El campo estado es obligatorio, completeo', 'error') ;
         $this->validate();
 
