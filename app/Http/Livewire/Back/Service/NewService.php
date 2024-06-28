@@ -31,6 +31,8 @@ class NewService extends Component
         'file' => '',
         'service.entrega_baja' => '',
         'service.nombre_usuario' => '',
+        'service.nro_act' => '',
+        'service.remitente' => '',
     ];
 
     public function save_service()
@@ -38,7 +40,7 @@ class NewService extends Component
         $this->estadoSelected ? '' : $this->toast('El campo estado es obligatorio, completeo', 'error') ;
         $this->validate();
 
-    
+
         $service = Service::create([
             'estado_id' => $this->estadoSelected,
             'problema' => $this->service->problema,
@@ -48,6 +50,8 @@ class NewService extends Component
             'file' => 'file',
             'entega_baja' => $this->service->entega_baja,
             'usuario_asignado' => $this->service->usuario_asignado,
+            'nro_act' => $this->service->nro_act,
+            'remitente' => $this->service->remitente,
         ]);
 
 

@@ -1,3 +1,7 @@
+<div class="row">
+    <x-admin.input title="Nro. de actuación" model="service.nro_act" classes="col"/>
+    <x-admin.input title="Pedido por" model="service.remitente" classes="col"/>
+</div>
 <div wire:ignore class="row">
     <x-admin.select
         id="deviceSelect2"

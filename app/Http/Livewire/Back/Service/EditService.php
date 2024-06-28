@@ -26,6 +26,8 @@ class EditService extends Component
         'service.user_id' => '',
         'service.entrega_baja' => '',
         'service.nombre_usuario' => '',
+        'service.nro_act' => '',
+        'service.remitente' => '',
     ];
 
     public function mount(Service $service)

@@ -18,7 +18,9 @@ class Service extends Model
         'user_id',
         'entrega_baja',
         'nombre_usuario',
-        'area_id'
+        'area_id',
+        'nro_act',
+        'remitente'
     ];
 
     // 1 en proceso
