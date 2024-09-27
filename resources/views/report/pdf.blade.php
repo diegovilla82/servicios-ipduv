@@ -28,7 +28,7 @@
 <title>Nota solicitud de Inscripción al Registro de Personas Físicas (Instaladores Individuales)</title>
 </head>
 <body>
-    <img src="assets/images/logo.jpeg" style="max-width: 715px;">
+    <img src="assets/images/logo-ipduv.png" style="max-width: 715px;">
 <br>
 <table style="width:100%; background-image: url('assets/images/fondo.jpg')  ">
         <tr>
