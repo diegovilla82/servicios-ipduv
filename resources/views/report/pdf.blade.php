@@ -28,7 +28,7 @@
 <title>Nota solicitud de Inscripción al Registro de Personas Físicas (Instaladores Individuales)</title>
 </head>
 <body>
-    <img src="assets/images/logo-new.png" style="width: 100px;">
+    <img src="assets/images/logo-new.png" style="width: 250px;">
 <br>
 <table style="width:100%; background-image: url('assets/images/fondo-new.png')  ">
     {{-- <table style="width: 100%" > --}}
