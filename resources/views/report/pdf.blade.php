@@ -28,9 +28,10 @@
 <title>Nota solicitud de Inscripción al Registro de Personas Físicas (Instaladores Individuales)</title>
 </head>
 <body>
-    <img src="assets/images/logo-new.png" style="width: 250px;">
+    <img src="assets/images/logo-new.png" style="width: 250px; padding-bottom: 2rem">
 <br>
-<table style="width:100%; background-image: url('assets/images/fondo-new.png')  ">
+
+<table style="width:50%; background-image: url('assets/images/fondo-new.png')  ">
     {{-- <table style="width: 100%" > --}}
         <tr>
             <td colspan="2" style="text-align: center;"><br>TICKET ORIGINAL N°: {{ $servicio->id }}<br><br></td>
